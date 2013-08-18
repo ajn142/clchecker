@@ -1,0 +1,11 @@
+#!/bin/bash
+URLLIST="urllist.csv"
+while read line
+do
+	URL=$(echo $line | cut -d',' -f1)
+        TIME=$(echo $line | cut -d',' -f2)
+	EMAIL=$(echo $line | cut -d',' -f3)
+	FILE=$(echo $line | cut -d',' -f4)
+	echo "$FILE passed to clchecker"
+	/bin/bash ~/clistchecker/clchecker $URL $TIME $EMAIL $FILE &
+done < "$URLLIST"

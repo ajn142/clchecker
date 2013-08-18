@@ -1,0 +1,22 @@
+#!/bin/bash
+while [ 1 ]
+do
+URL=$1        
+TIME=$2
+EMAIL=$3
+FILE=$4
+curl -Os "$URL/$FILE"
+
+if [[ -e $FILE && -e "$FILE.local" ]] ;then
+
+diff $FILE "$FILE.local"
+if [[ $? -ne 0 ]]; then
+echo "Page updated $URL This page will be checked again in $TIME seconds." | mail $EMAIL -s"Page \"$FILE\" updated"
+mv $FILE "$FILE.local"
+fi
+else
+echo "Page added $URL This page will be checked again in $TIME seconds." | mail $EMAIL -s"Page \"$FILE\" added"
+mv $FILE "$FILE.local"
+fi
+sleep $TIME
+done
