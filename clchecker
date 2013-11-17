@@ -5,7 +5,7 @@ URL=$1
 TIME=$2
 EMAIL=$3
 FILE=$4
-curl -Os "$URL/$FILE"
+curl -Os "$URL/$FILE" -A 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'
 
 if [[ -e $FILE && -e "$FILE.local" ]] ;then
 
