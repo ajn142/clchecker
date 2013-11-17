@@ -1,1 +1,6 @@
+#Ignore
 *.swp
+*.csv
+
+#Do Not Ignore
+!urllist.csv
