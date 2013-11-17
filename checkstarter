@@ -1,11 +1,17 @@
 #!/bin/bash
 URLLIST="urllist.csv"
+comment='#'
 while read line
 do
-	URL=$(echo $line | cut -d',' -f1)
-        TIME=$(echo $line | cut -d',' -f2)
-	EMAIL=$(echo $line | cut -d',' -f3)
-	FILE=$(echo $line | cut -d',' -f4)
-	echo "$FILE passed to clchecker"
-	/bin/bash ~/clistchecker/clchecker $URL $TIME $EMAIL $FILE &
+first=$(echo $line | cut -c 1)
+	if [$first == $comment]
+	then
+	else
+		URL=$(echo $line | cut -d',' -f1)
+		TIME=$(echo $line | cut -d',' -f2)
+		EMAIL=$(echo $line | cut -d',' -f3)
+		FILE=$(echo $line | cut -d',' -f4)
+		echo "$FILE passed to clchecker"
+		/bin/bash ~/clistchecker/clchecker $URL $TIME $EMAIL $FILE &
+	fi
 done < "$URLLIST"
