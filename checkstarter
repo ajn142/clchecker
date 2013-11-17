@@ -1,5 +1,14 @@
 #!/bin/bash
-URLLIST="urllist.csv"
+URLLIST=$1
+if [ -s $URLLIST ]
+then
+	echo -n "Enter the .csv file you wish to load entries from, leave blank for default (urllist.csv): "
+	read URLLIST
+	if [ -s $URLLIST ]
+	then
+        	CSV="urllist.csv"
+	fi
+fi
 comment='#'
 while read line
 do
@@ -12,6 +21,6 @@ first=$(echo $line | cut -c 1)
 		EMAIL=$(echo $line | cut -d',' -f3)
 		FILE=$(echo $line | cut -d',' -f4)
 		echo "$FILE passed to clchecker"
-		/bin/bash ~/clistchecker/clchecker $URL $TIME $EMAIL $FILE &
+		bash clchecker $URL $TIME $EMAIL $FILE &
 	fi
 done < "$URLLIST"
