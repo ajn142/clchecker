@@ -1,10 +1,10 @@
 #!/bin/bash
 URLLIST=$1
-if [ -s $URLLIST ]
+if [ -z $URLLIST ]
 then
 	echo -n "Enter the .csv file you wish to load entries from, leave blank for default (urllist.csv): "
 	read URLLIST
-	if [ -s $URLLIST ]
+	if [ -z $URLLIST ]
 	then
         	CSV="urllist.csv"
 	fi
@@ -13,8 +13,9 @@ comment='#'
 while read line
 do
 first=$(echo $line | cut -c 1)
-	if [$first == $comment]
+	if [ $first == $comment ]
 	then
+		sleep 1
 	else
 		URL=$(echo $line | cut -d',' -f1)
 		TIME=$(echo $line | cut -d',' -f2)

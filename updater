@@ -1,19 +1,19 @@
 #!/bin/bash
 echo -n "Enter the .csv file you wish this entry to be saved to, leave blank for default (urllist.csv): "
 read CSV
-if [ -s $CSV ]
+if [ -n $CSV ]
 then
         CSV="urllist.csv"
 fi
-echo -n "Please copy and paste the link for the page you want to check for changes:"
+echo -n "Please copy and paste the link for the page you want to check for changes: "
 read URL
-echo -n "Please enter the time in seconds desired between checks (5m=300, 30m=1800, 1h=3600, 6h=21600, 1d=86400 etc.,):"
+echo -n "Please enter the time in seconds desired between checks (5m=300, 30m=1800, 1h=3600, 6h=21600, 1d=86400 etc.,): "
 read TIME
-echo -n "Please enter the email address you want notifications sent to:"
+echo -n "Please enter the email address you want notifications sent to: "
 read EMAIL
-echo -n "Please enter a descriptive and unique name for the search (recommended is SiteLocationKeywordFilters):"
+echo -n "Please enter a descriptive and unique name for the search (recommended is SiteLocationKeywordFilters): "
 read FILE
-if [ -s $URL || -s $TIME || -s $EMAIL || -s $FILE ]
+if [ -n $URL || -n $TIME || -n $EMAIL || -n $FILE ]
 then
 	echo "Blank entries are not accepted for the url, time, email, or name. Aborting."
 else
