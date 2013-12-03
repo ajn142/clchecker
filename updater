@@ -1,7 +1,7 @@
 #!/bin/bash
 echo -n "Enter the .csv file you wish this entry to be saved to, leave blank for default (urllist.csv): "
 read CSV
-if [ -n $CSV ]
+if [ -z $CSV ]
 then
         CSV="urllist.csv"
 fi
