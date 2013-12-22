@@ -13,11 +13,17 @@ echo -n "Please enter the email address you want notifications sent to: "
 read EMAIL
 echo -n "Please enter a descriptive and unique name for the search (recommended is SiteLocationKeywordFilters): "
 read FILE
+echo -n "Enter the value for the ruleset you wish the search processed under, leave blank for default (0, no processing): "
+read RULE
+if [ -z $RULE ]
+then
+        RULE=0
+fi
 #if [ -n $URL || -n $TIME || -n $EMAIL || -n $FILE ]
 #then
 #	echo "Blank entries are not accepted for the url, time, email, or name. Aborting."
 #else
-#pkill -f clchecker
-echo "$URL,$TIME,$EMAIL,$FILE" >> $CSV
+pkill -f clchecker
+echo "$URL,$TIME,$EMAIL,$FILE,$RULE" >> $CSV
 bash checkstarter $CSV
 #fi

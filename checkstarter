@@ -21,7 +21,8 @@ first=$(echo $line | cut -c 1)
 		TIME=$(echo $line | cut -d',' -f2)
 		EMAIL=$(echo $line | cut -d',' -f3)
 		FILE=$(echo $line | cut -d',' -f4)
+		RULE=$(echo $line | cut -d',' -f5)
 		echo "$FILE passed to clchecker"
-		bash clchecker $URL $TIME $EMAIL $FILE &
+		bash clchecker $URL $TIME $EMAIL $FILE $RULE &
 	fi
 done < "$URLLIST"

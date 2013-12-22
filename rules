@@ -1,0 +1,17 @@
+#!/bin/bash 
+#Alters the $FILE.now file according to a user defined set of rules.
+#Each search can be assigned a rule value that will determine how it is processed.
+#For performance sake, if the rule value is 0 (default), this file will not be called.
+#Use the following structure for rules
+FILE=$1
+RULE=$2 
+#Removes Nearby Results from Craigslist results
+if [[ $RULE == 1 ]]
+then
+    sed -i '/Few LOCAL*/,$d' "$FILE.now"
+else
+    if [[ $RULE == 2 ]]
+    then
+        sed -i '203,496d' "$FILE.now" && sed -i '2174,$d' "$FILE.now"
+    fi
+fi

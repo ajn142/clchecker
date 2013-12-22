@@ -5,8 +5,12 @@ URL=$1
 TIME=$2
 EMAIL=$3
 FILE=$4
+RULE=$5
 curl -Osg "$URL/$FILE.now" -A 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'
-
+if [[ $RULE != 0 ]]
+then
+    bash rules $FILE $RULE
+fi
 if [[ -e "$FILE.now" && -e "$FILE.last" ]] 
 then
     diff "$FILE.now" "$FILE.last"
